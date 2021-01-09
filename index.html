@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Video Call</title>
+    <script
+      src="https://kit.fontawesome.com/c8500fcdd6.js"
+      crossorigin="anonymous"
+    ></script>
+    <link href="./styles/styles.css" rel="stylesheet" />
+  </head>
+  <body>
+    <div class="container">
+      <header><i class="fas fa-film"></i> Video call</header>
+
+      <section class="holder holder--video">
+        <div id="remote" class="holder--video-remote waiting"></div>
+        <div id="me" class="holder--video-me"></div>
+      </section>
+      <section class="holder holder--options">
+        <button class="holder--options-option" id="btnCam">
+          <i class="fas fa-video"></i>
+          Cam
+        </button>
+        <button class="holder--options-option" id="btnMic">
+          <i class="fas fa-microphone"></i>
+          Mic
+        </button>
+        <button class="holder--options-option hidden" id="btnStop">
+          <i class="fas fa-window-close"></i> Leave
+        </button>
+        <button class="holder--options-option" id="btnStart">
+          <i class="fas fa-plug"></i> Join
+        </button>
+      </section>
+    </div>
+    <script src="https://download.agora.io/sdk/release/AgoraRTC_N-4.2.1.js"></script>
+    <script src="./scripts/script.js"></script>
+  </body>
+</html>
