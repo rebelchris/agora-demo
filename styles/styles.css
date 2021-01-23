@@ -103,6 +103,10 @@ body {
   content: "Waiting...";
 }
 
+.holder--video-remote.full:before {
+  content: "Room is full!";
+}
+
 .holder--video-remote video {
   position: relative !important;
   display: block;

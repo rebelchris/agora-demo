@@ -1,7 +1,8 @@
 const options = {
-  appId: "{APPID}",
+  appId: "f5977a6fcffc4a3c8a44f2cca64d07d1",
   channel: "demo",
-  token: "{TOKEN}",
+  token:
+    "006f5977a6fcffc4a3c8a44f2cca64d07d1IABQ+RUux3qC4zcJ1OzD6/PWv/6aZPxU1fAQCkM8ZFMeD6DfQtYAAAAAEABI+NBc/oMNYAEAAQD7gw1g",
 };
 
 let rtc = {
@@ -33,6 +34,10 @@ async function startBasicCall() {
     startAudio();
 
     rtc.client.on("user-published", async (user, mediaType) => {
+      if (rtc.client._users.length > 1) {
+        roomFull();
+      }
+
       await rtc.client.subscribe(user, mediaType);
       remote.classList.remove("waiting");
 
@@ -52,11 +57,7 @@ async function startBasicCall() {
 }
 
 btnStop.addEventListener("click", () => {
-  stopVideo();
-  stopAudio();
-  rtc.client.leave();
-  btnStop.classList.add("hidden");
-  btnStart.classList.remove("hidden");
+  leave();
 });
 btnStart.addEventListener("click", () => {
   startBasicCall();
@@ -67,6 +68,19 @@ btnCam.addEventListener("click", () => {
 btnMic.addEventListener("click", () => {
   btnMic.classList.contains("active") ? stopAudio() : startAudio();
 });
+
+const roomFull = () => {
+  leave();
+  remote.classList.add("full");
+};
+
+const leave = () => {
+  stopVideo();
+  stopAudio();
+  rtc.client.leave();
+  btnStop.classList.add("hidden");
+  btnStart.classList.remove("hidden");
+};
 
 const stopAudio = () => {
   rtc.localAudioTrack.close();
